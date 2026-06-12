@@ -8,6 +8,12 @@
     "agent-orchestrator": "dist/cli.js",
     "agent-orchestrator-mcp": "dist/bin/mcp.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "orchestrator.config.example.json",
+    "task.example.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json && node scripts/copy-prompts.mjs",
     "prepare": "npm run build",
