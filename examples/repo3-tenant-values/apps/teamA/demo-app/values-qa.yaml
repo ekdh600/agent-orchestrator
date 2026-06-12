@@ -1,0 +1,5 @@
+replicaCount: 1
+
+config:
+  envLabel: qa
+  message: "hello from QA"

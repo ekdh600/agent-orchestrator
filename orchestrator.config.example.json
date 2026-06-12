@@ -1,0 +1,47 @@
+{
+  "projectRoot": ".",
+  "maxRounds": 3,
+  "timeoutSeconds": 900,
+  "workers": {
+    "claude": {
+      "enabled": true,
+      "command": "claude",
+      "args": ["-p"]
+    },
+    "codex": {
+      "enabled": true,
+      "command": "codex",
+      "args": ["exec", "--skip-git-repo-check"]
+    },
+    "cursor": {
+      "enabled": true,
+      "command": "cursor-agent",
+      "args": ["-p"]
+    }
+  },
+  "verifier": {
+    "commands": [
+      "npm test",
+      "npm run lint",
+      "npm run typecheck"
+    ]
+  },
+  "safety": {
+    "allowedPaths": ["src/**", "tests/**", "docs/**"],
+    "approvalRequiredFor": [
+      "dependency_change",
+      "migration",
+      "delete_file",
+      "ci_change",
+      "secret_change",
+      "security_change"
+    ],
+    "denyShellPatterns": [
+      "rm -rf /",
+      "curl * | sh",
+      "wget * | sh",
+      "chmod 777",
+      "sudo"
+    ]
+  }
+}

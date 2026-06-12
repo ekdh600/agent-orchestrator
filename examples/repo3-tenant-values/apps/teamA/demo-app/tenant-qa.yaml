@@ -1,0 +1,4 @@
+team: teamA
+app: demo-app
+chart: web-app
+syncWave: "0"

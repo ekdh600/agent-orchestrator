@@ -1,0 +1,32 @@
+{
+  "name": "agent-orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first orchestrator that coordinates AI coding agents (Claude Code, Codex CLI, Cursor) as isolated workers via auditable, artifact-driven runs.",
+  "type": "module",
+  "bin": {
+    "agent-orchestrator": "dist/cli.js",
+    "agent-orchestrator-mcp": "dist/bin/mcp.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-prompts.mjs",
+    "start": "node dist/cli.js",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.8"
+  }
+}

@@ -2,3 +2,5 @@ node_modules/
 dist/
 projects/
 runs/
+.orchestrator/
+orchestrator.config.json
