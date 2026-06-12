@@ -418,13 +418,33 @@ REPL commands: `:runs`, `:show <runId>`, `:help`, `:quit` (or Ctrl-D).
 agent-orchestrator mcp --config ./orchestrator.config.example.json
 ```
 
-Wire it up in **Claude Code** via the `claude mcp add` command, or directly in `~/.claude.json`:
+#### Install straight from GitHub (no clone needed)
+
+The package builds itself on install (`prepare` script), so any machine with Node ≥ 18.17 can run the MCP server directly from this repository:
+
+```bash
+# one-liner registration in Claude Code (user scope):
+claude mcp add agent-orchestrator --scope user \
+  --env AGENT_ORCH_CONFIG=/abs/path/to/orchestrator.config.json \
+  --env AGENT_ORCH_PROJECT_ROOT=/abs/path/to/your/project \
+  -- npx -y -p github:ekdh600/agent-orchestrator agent-orchestrator-mcp
+```
+
+…or install the CLIs globally and reference the binary:
+
+```bash
+npm install -g github:ekdh600/agent-orchestrator
+# → agent-orchestrator / agent-orchestrator-mcp on your PATH
+```
+
+Wire it up in **Claude Code** via the `claude mcp add` command above, or directly in `~/.claude.json`:
 
 ```json
 {
   "mcpServers": {
     "agent-orchestrator": {
-      "command": "agent-orchestrator-mcp",
+      "command": "npx",
+      "args": ["-y", "-p", "github:ekdh600/agent-orchestrator", "agent-orchestrator-mcp"],
       "env": {
         "AGENT_ORCH_CONFIG": "/abs/path/to/orchestrator.config.json",
         "AGENT_ORCH_PROJECT_ROOT": "/abs/path/to/your/project"
@@ -433,6 +453,8 @@ Wire it up in **Claude Code** via the `claude mcp add` command, or directly in `
   }
 }
 ```
+
+(If you installed globally or run from a local checkout, set `"command": "agent-orchestrator-mcp"` instead — the rest is identical.)
 
 In **Cursor** add to `.cursor/mcp.json` with the same shape. Once registered, the model gets these tools:
 

@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && node scripts/copy-prompts.mjs",
+    "prepare": "npm run build",
     "start": "node dist/cli.js",
     "dev": "tsx src/cli.ts",
     "test": "vitest run",
